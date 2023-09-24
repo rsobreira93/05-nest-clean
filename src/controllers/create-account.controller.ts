@@ -17,7 +17,7 @@ const createAccountBodySchema = z.object({
   password: z.string().min(6),
 });
 
-type createAccountBodySchema = z.infer<typeof createAccountBodySchema>;
+type CreateAccountBodySchema = z.infer<typeof createAccountBodySchema>;
 
 @Controller('accounts')
 export class CreateAccountController {
@@ -25,7 +25,7 @@ export class CreateAccountController {
   @Post()
   @UsePipes(new ZodValidationPipe(createAccountBodySchema))
   @HttpCode(201)
-  async handle(@Body() body: createAccountBodySchema) {
+  async handle(@Body() body: CreateAccountBodySchema) {
     const { name, email, password } = body;
 
     const userWithSomeEmail = await this.prisma.user.findUnique({
