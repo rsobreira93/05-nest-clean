@@ -1,16 +1,9 @@
-import {
-  Body,
-  Controller,
-  Post,
-  UnauthorizedException,
-  UseGuards,
-  UsePipes,
-} from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, UsePipes } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { AuthGuard } from '@nestjs/passport';
-import { compare } from 'bcryptjs';
+import { CurrentUser } from 'src/auth/current-user-decorator';
+
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { ZodValidationPipe } from 'src/pipes/zod-validation-pipe';
+import { userPayload } from 'src/auth/jwt.strategy';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Controller('/questions')
@@ -20,7 +13,7 @@ export class CreateQuestion {
 
   @Post()
   @UsePipes()
-  async handle() {
-    return 'ok';
+  async handle(@CurrentUser() user: userPayload) {
+    return user;
   }
 }
