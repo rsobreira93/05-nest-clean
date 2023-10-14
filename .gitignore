@@ -5,6 +5,10 @@
 #data
 /data
 
+#keys
+*.pem
+*.txt
+
 # Logs
 logs
 *.log
