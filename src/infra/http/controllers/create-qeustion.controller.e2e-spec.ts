@@ -39,7 +39,7 @@ describe('Create question (E2E)', () => {
       .set('Authorization', `Bearer ${accessToken}`)
       .send({
         title: 'New question',
-        context: 'Question content',
+        content: 'Question content',
       });
 
     expect(response.statusCode).toBe(201);
