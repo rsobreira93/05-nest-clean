@@ -3,12 +3,9 @@ import {
   Controller,
   Get,
   Query,
-  UseGuards,
   UsePipes,
 } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
 
-import { JwtAuthGuard } from '@/infra/auth/jwt-auth.guard';
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe';
 
 import { z } from 'zod';
