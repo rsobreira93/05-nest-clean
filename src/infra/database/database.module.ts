@@ -10,6 +10,10 @@ import { QuestionRepository } from '@/domain/forum/application/repositories/ques
 import { AnswerRepository } from '@/domain/forum/application/repositories/answers-repository';
 import { StudentsRepository } from '@/domain/forum/application/repositories/students-repository';
 import { PrismaStudentsRepository } from './prisma/repositories/prisma-students-repository';
+import { AnswerAttachmentsRepository } from '@/domain/forum/application/repositories/answer-attachments-repository';
+import { AnswersCommentRepository } from '@/domain/forum/application/repositories/answers-comments-repository';
+import { QuestionAttachmentsRepository } from '@/domain/forum/application/repositories/question-attachments-repository';
+import { QuestionCommentRepository } from '@/domain/forum/application/repositories/question-comments-repository';
 
 @Module({
   providers: [
@@ -22,20 +26,34 @@ import { PrismaStudentsRepository } from './prisma/repositories/prisma-students-
       provide: StudentsRepository,
       useClass: PrismaStudentsRepository,
     },
-    PrismaAnswersAttachmentsRepository,
-    PrismaAnswersCommentsRepository,
-    PrismaAnswersRepository,
-    PrismaQuestionsAttachmentsRepository,
-    PrismaQuestionCommentsRepository,
-    PrismaQuestionsRepository,
+    {
+      provide: AnswerAttachmentsRepository,
+      useClass: PrismaAnswersAttachmentsRepository,
+    },
+    {
+      provide: AnswersCommentRepository,
+      useClass: PrismaAnswersCommentsRepository,
+    },
+    {
+      provide: AnswerRepository,
+      useClass: PrismaAnswersRepository,
+    },
+    {
+      provide: QuestionAttachmentsRepository,
+      useClass: PrismaQuestionsAttachmentsRepository,
+    },
+    {
+      provide: QuestionCommentRepository,
+      useClass: PrismaQuestionCommentsRepository,
+    },
   ],
   exports: [
     PrismaService,
-    PrismaAnswersAttachmentsRepository,
-    PrismaAnswersCommentsRepository,
-    PrismaAnswersRepository,
-    PrismaQuestionsAttachmentsRepository,
-    PrismaQuestionCommentsRepository,
+    AnswerAttachmentsRepository,
+    AnswersCommentRepository,
+    AnswerRepository,
+    QuestionAttachmentsRepository,
+    QuestionCommentRepository,
     QuestionRepository,
     StudentsRepository,
   ],
