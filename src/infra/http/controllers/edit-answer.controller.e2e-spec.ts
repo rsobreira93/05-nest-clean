@@ -54,7 +54,7 @@ describe('Edit answer (E2E)', () => {
       .send({
         content: 'Edit answer content',
       });
-    console.log(response);
+
     expect(response.statusCode).toBe(204);
 
     const answerOnDatabase = await prisma.answer.findFirst({
