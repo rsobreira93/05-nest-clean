@@ -67,8 +67,6 @@ describe('Delete answer comment (E2E)', () => {
       .delete(`/answers/comments/${answerCommentId}`)
       .set('Authorization', `Bearer ${accessToken}`);
 
-    console.log(response);
-
     expect(response.statusCode).toBe(204);
 
     const commentOnDatabase = await prisma.comment.findUnique({
