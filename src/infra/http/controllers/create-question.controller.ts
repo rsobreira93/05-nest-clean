@@ -3,13 +3,10 @@ import {
   Body,
   Controller,
   Post,
-  UseGuards,
   UsePipes,
 } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
 import { CurrentUser } from '@/infra/auth/current-user-decorator';
 
-import { JwtAuthGuard } from '@/infra/auth/jwt-auth.guard';
 import { userPayload } from '@/infra/auth/jwt.strategy';
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe';
 import { z } from 'zod';
@@ -18,6 +15,7 @@ import { CreateQuestionUseCase } from '@/domain/forum/application/use-cases/crea
 const createQuestionBodySchema = z.object({
   title: z.string(),
   content: z.string(),
+  attachments: z.array(z.string().uuid()),
 });
 
 const bodyValidationPipe = new ZodValidationPipe(createQuestionBodySchema);
@@ -35,14 +33,14 @@ export class CreateQuestionController {
     @Body(bodyValidationPipe)
     body: CreateQuestionBodySchema,
   ) {
-    const { title, content } = body;
+    const { title, content, attachments } = body;
     const { sub: authorId } = user;
 
     const result = await this.createQuestion.execute({
       title,
       content,
       authorId,
-      attachmentsIds: [],
+      attachmentsIds: attachments,
     });
 
     if (result.isLeft()) {
