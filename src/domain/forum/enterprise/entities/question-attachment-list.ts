@@ -1,4 +1,4 @@
-import { QuestionAttachment } from '@/core/entities/question-attachment';
+import { QuestionAttachment } from './question-attachment';
 import { WatchedList } from '@/core/entities/watched-list';
 
 export class QuestionAttachmentList extends WatchedList<QuestionAttachment> {

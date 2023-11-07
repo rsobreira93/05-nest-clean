@@ -1,4 +1,4 @@
-import { QuestionAttachment } from '@/core/entities/question-attachment';
+import { QuestionAttachment } from '@/domain/forum/enterprise/entities/question-attachment';
 import { QuestionAttachmentsRepository } from '@/domain/forum/application/repositories/question-attachments-repository';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';

@@ -1,7 +1,7 @@
 import {
   AnswerAttachment,
   AnswerAttachmentProps,
-} from '@/core/entities/answer-attachment';
+} from '@/domain/forum/enterprise/entities/answer-attachment';
 import { UniqueEntityId } from '@/core/entities/unique-entity-id';
 import { PrismaService } from '@/infra/database/prisma/prisma.service';
 import { Injectable } from '@nestjs/common';

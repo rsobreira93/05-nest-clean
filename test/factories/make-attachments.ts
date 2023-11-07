@@ -4,7 +4,10 @@ import { UniqueEntityId } from '@/core/entities/unique-entity-id';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@/infra/database/prisma/prisma.service';
 import { PrismaAttachmentMapper } from '@/infra/database/prisma/mappers/prisma-attachment-mapper';
-import { Attachment, AttachmentProps } from '@/core/entities/attachment';
+import {
+  Attachment,
+  AttachmentProps,
+} from '@/domain/forum/enterprise/entities/attachment';
 
 export function makeAttachment(
   override: Partial<AttachmentProps> = {},

@@ -1,4 +1,4 @@
-import { Attachment } from '@/core/entities/attachment';
+import { Attachment } from '@/domain/forum/enterprise/entities/attachment';
 import { Prisma } from '@prisma/client';
 
 export class PrismaAttachmentMapper {

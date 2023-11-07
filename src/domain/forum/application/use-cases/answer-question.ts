@@ -2,7 +2,7 @@ import { UniqueEntityId } from '@/core/entities/unique-entity-id';
 import { Answer } from '../../enterprise/entities/answer';
 import { AnswerRepository } from '../repositories/answers-repository';
 import { Either, right } from '@/core/either';
-import { AnswerAttachment } from '@/core/entities/answer-attachment';
+import { AnswerAttachment } from '@/domain/forum/enterprise/entities/answer-attachment';
 import { AnswerAttachmentList } from '../../enterprise/entities/answer-attachment-list';
 import { Injectable } from '@nestjs/common';
 

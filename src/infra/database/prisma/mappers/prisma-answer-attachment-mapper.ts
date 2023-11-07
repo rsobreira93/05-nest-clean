@@ -1,5 +1,5 @@
 import { UniqueEntityId } from '@/core/entities/unique-entity-id';
-import { AnswerAttachment } from '@/core/entities/answer-attachment';
+import { AnswerAttachment } from '@/domain/forum/enterprise/entities/answer-attachment';
 import { Prisma, Attachment as PrismaAttachment } from '@prisma/client';
 
 export class PrismaAnswerAttachmentMapper {

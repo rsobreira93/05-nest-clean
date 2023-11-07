@@ -1,4 +1,4 @@
-import { Attachment } from '@/core/entities/attachment';
+import { Attachment } from '@/domain/forum/enterprise/entities/attachment';
 import { AttachmentsRepository } from '@/domain/forum/application/repositories/attachments-repository';
 import { PrismaService } from '../prisma.service';
 import { PrismaAttachmentMapper } from '../mappers/prisma-attachment-mapper';
