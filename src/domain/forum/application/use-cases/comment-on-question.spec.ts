@@ -3,10 +3,15 @@ import { InMemoryQuestionRepository } from 'test/repositories/in-memory-question
 import { CommentOnQuestionUseCase } from './comment-on-question';
 import { InMemoryQuestionCommentRepository } from 'test/repositories/in-memory-question-comments-repository';
 import { InMemoryQuestionAttachmentsRepository } from 'test/repositories/in-memory-question-attachments-repository';
+import { InMemoryAttachmentsRepository } from 'test/repositories/in-memory-attachments-repository';
+import { InMemoryStudentRepository } from 'test/repositories/in-memory-students-repository';
 
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionRepository;
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
+let inMemoryStudentRepository: InMemoryStudentRepository;
+let inMemoryAttachmentsRepository: InMemoryAttachmentsRepository;
+
 let sut: CommentOnQuestionUseCase;
 
 describe('Comment on Question', () => {
@@ -15,9 +20,13 @@ describe('Comment on Question', () => {
       new InMemoryQuestionAttachmentsRepository();
     inMemoryQuestionsRepository = new InMemoryQuestionRepository(
       inMemoryQuestionAttachmentsRepository,
+      inMemoryAttachmentsRepository,
+      inMemoryStudentRepository,
     );
-    inMemoryQuestionCommentsRepository =
-      new InMemoryQuestionCommentRepository();
+
+    inMemoryQuestionCommentsRepository = new InMemoryQuestionCommentRepository(
+      inMemoryStudentRepository,
+    );
 
     sut = new CommentOnQuestionUseCase(
       inMemoryQuestionsRepository,

@@ -2,9 +2,14 @@ import { InMemoryQuestionRepository } from 'test/repositories/in-memory-question
 import { CreateQuestionUseCase } from './create-question';
 import { UniqueEntityId } from '@/core/entities/unique-entity-id';
 import { InMemoryQuestionAttachmentsRepository } from 'test/repositories/in-memory-question-attachments-repository';
+import { InMemoryAttachmentsRepository } from 'test/repositories/in-memory-attachments-repository';
+import { InMemoryStudentRepository } from 'test/repositories/in-memory-students-repository';
 
 let inMemoryQuestionsRepository: InMemoryQuestionRepository;
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
+let inMemoryStudentRepository: InMemoryStudentRepository;
+let inMemoryAttachmentsRepository: InMemoryAttachmentsRepository;
+
 let sut: CreateQuestionUseCase;
 
 describe('Create Question', () => {
@@ -13,7 +18,10 @@ describe('Create Question', () => {
       new InMemoryQuestionAttachmentsRepository();
     inMemoryQuestionsRepository = new InMemoryQuestionRepository(
       inMemoryQuestionAttachmentsRepository,
+      inMemoryAttachmentsRepository,
+      inMemoryStudentRepository,
     );
+
     sut = new CreateQuestionUseCase(inMemoryQuestionsRepository);
   });
 

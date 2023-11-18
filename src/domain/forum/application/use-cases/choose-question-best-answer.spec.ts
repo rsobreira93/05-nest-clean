@@ -7,11 +7,16 @@ import { makeAnswer } from 'test/factories/make-answer';
 import { NotAllowedError } from '@/core/errors/errors/not-allowed-error';
 import { InMemoryQuestionAttachmentsRepository } from 'test/repositories/in-memory-question-attachments-repository';
 import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/in-memory-answer-attachments-repository';
+import { InMemoryStudentRepository } from 'test/repositories/in-memory-students-repository';
+import { InMemoryAttachmentsRepository } from 'test/repositories/in-memory-attachments-repository';
 
 let inMemoryAnswersRepository: InMemoryAnswerRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionRepository;
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository;
 let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository;
+let inMemoryStudentRepository: InMemoryStudentRepository;
+let inMemoryAttachmentsRepository: InMemoryAttachmentsRepository;
+
 let sut: ChooseQuestionBestAnswerUseCase;
 
 describe('Choose Question Best Answer', () => {
@@ -22,6 +27,8 @@ describe('Choose Question Best Answer', () => {
       new InMemoryQuestionAttachmentsRepository();
     inMemoryQuestionsRepository = new InMemoryQuestionRepository(
       inMemoryQuestionAttachmentsRepository,
+      inMemoryAttachmentsRepository,
+      inMemoryStudentRepository,
     );
     inMemoryAnswersRepository = new InMemoryAnswerRepository(
       inMemoryAnswerAttachmentsRepository,
